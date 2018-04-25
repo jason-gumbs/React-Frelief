@@ -50,7 +50,7 @@ class Resources extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-   
+   console.log("hey")
     if (this.state.names && this.state.address) {
       API.saveResource({
         names: this.state.names,
@@ -61,7 +61,7 @@ class Resources extends Component {
         description: this.state.description,
         number: this.state.number,
         state: this.state.state,
-        zip: this.state.zip,
+        zip: this.state.zip
       })
         .then(res => this.loadResource())
         .catch(err => console.log(err));
@@ -124,7 +124,14 @@ class Resources extends Component {
                 onChange={this.handleInputChange}
                 name="state"
                 placeholder="(required)"
-              />    
+              />   
+                <p>Offering</p>
+              <Input
+                value={this.state.offering}
+                onChange={this.handleInputChange}
+                name="offering"
+                placeholder="(required)"
+              />  
               
               <p>Zip</p>
               <Input
@@ -147,7 +154,7 @@ class Resources extends Component {
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>Books On My List</h1>
+              <h1>Resources offered List</h1>
             </Jumbotron>
             {this.state.Resources.length ? (
               <List>
