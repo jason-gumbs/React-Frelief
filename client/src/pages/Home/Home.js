@@ -20,8 +20,9 @@ class Home extends Component {
       
       <div id="content">
         <p>FREE DISASTER RELIEF RESOURCES</p>
-        <a href="search_pg.html"><Btn >SEARCH</Btn></a>
+        <a href="/search"><Btn >SEARCH</Btn></a>
         <a href="/resource"><Btn>OFFER RESOURCES</Btn></a>
+        <a href="/resource/map"><Btn>Map</Btn></a>
       </div>
       <p id="copywrite">FREILIEF © 2018</p> 
    

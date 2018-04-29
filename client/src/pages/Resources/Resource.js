@@ -3,10 +3,14 @@ import DeleteBtn from "../../components/DeleteBtn";
 import Btn from "../../components/Button";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
+import AWS from "../../utils/AWSUtil.js";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
-import { Input, TextArea, Select, FormBtn } from "../../components/Form";
+import { Input, TextArea,File, Select, FormBtn } from "../../components/Form";
+
+
+
 
 class Resources extends Component {
   state = {
@@ -21,6 +25,7 @@ class Resources extends Component {
    number: "",
     state: "",
     zip: "",
+    selectedFile: null
 
   };
 
@@ -48,6 +53,13 @@ class Resources extends Component {
       [name]: value
     });
   };
+  fileChangedHandler = (event) => {
+    this.setState({selectedFile: event.target.files[0]})
+  }
+  uploadHandler = (event) => { 
+    event.preventDefault();
+   
+  }
 
   handleFormSubmit = event => {
     event.preventDefault();
@@ -78,7 +90,8 @@ class Resources extends Component {
               <h1>Offer Resources</h1>
             </Jumbotron>
             <form>
-
+            
+          
               <p>Name/Organization </p>
               <Input
                 value={this.state.names}
@@ -93,8 +106,15 @@ class Resources extends Component {
                 name="product"
                 placeholder="(required)"
               />
+               <p>Load Image </p>
+         <File onChange={this.fileChangedHandler}
+         id="inputs"
+          />
+          <Btn onClick={this.uploadHandler}>Upload!</Btn>
 
-              <p>Desctiption</p>
+        
+
+              <p>Description</p>
               <TextArea
                 value={this.state.description}
                 onChange={this.handleInputChange}
@@ -150,30 +170,10 @@ class Resources extends Component {
               />
               <FormBtn
                onClick={this.handleFormSubmit}
-              >Submit Book</FormBtn>
+              >Submit </FormBtn>
             </form>
           </Col>
-          <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>Resources offered List</h1>
-            </Jumbotron>
-            {this.state.Resources.length ? (
-              <List>
-                {this.state.Resources.map(resource => (
-                  <ListItem key={resource._id}>
-                    <Link to={"/resource/" + resource._id}>
-                      <strong>
-                        {resource.name} by {resource.address}
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => this.deleteResource(resource._id)} />
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-          </Col>
+         
         </Row>
       </Container>
     );
