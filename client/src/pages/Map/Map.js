@@ -35,7 +35,7 @@ class Maps extends Component {
 
   componentDidMount() {
     this.loadResources();
-     mapboxgl.accessToken = "YOURAPIKEY";
+     mapboxgl.accessToken = "pk.eyJ1Ijoid2lsbGd1bWJzIiwiYSI6ImNqZ2xjOTdnaTAwbzIzM28xZXF3djNyNWQifQ.r7YWLO3IZGSdkzkSoboaqQ";
   
     const map = new mapboxgl.Map({
         container: 'map',

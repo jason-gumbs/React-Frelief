@@ -6,13 +6,18 @@
   "dependencies": {
     "aws-sdk": "^2.229.1",
     "axios": "^0.16.2",
+    "connect-multiparty": "^2.1.0",
     "dotenv": "^5.0.1",
+    "fs": "0.0.1-security",
     "mapbox-gl": "^0.45.0-beta.1",
+    "path": "^0.12.7",
+    "proxy-agent": "^3.0.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-dropzone": "^4.2.9",
     "react-router-dom": "^4.1.2",
-    "react-scripts": "1.0.14"
+    "react-scripts": "1.0.14",
+    "s3fs": "git+https://github.com/RiptideElements/s3fs.git"
   },
   "scripts": {
     "start": "react-scripts start",

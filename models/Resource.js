@@ -11,6 +11,7 @@ const resourceSchema = new Schema({
   number: { type: String, required: true },
   state: { type: String, required: true },
   zip: { type: String, required: true },
+  img: {type: String}, 
   date: { type: Date, default: Date.now }
 });
 

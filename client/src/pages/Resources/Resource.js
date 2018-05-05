@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Dropzone from "react-dropzone";
+import axios from "axios";
 import DeleteBtn from "../../components/DeleteBtn";
 import Btn from "../../components/Button";
 import Jumbotron from "../../components/Jumbotron";
@@ -25,6 +27,7 @@ class Resources extends Component {
    number: "",
     state: "",
     zip: "",
+    img:"",
     selectedFile: null
 
   };
@@ -32,7 +35,9 @@ class Resources extends Component {
   componentDidMount() {
     this.loadResources();
   }
+ 
 
+ 
   loadResources = () => {
     API.getResource()
       .then(res =>
@@ -47,6 +52,7 @@ class Resources extends Component {
       .catch(err => console.log(err));
   };
 
+
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -58,13 +64,23 @@ class Resources extends Component {
   }
   uploadHandler = (event) => { 
     event.preventDefault();
-   
+    let  file = this.state.selectedFile;
+    
+    AWS.addPhoto(file, (data) => {
+      console.log(data.Location)
+      console.log("this thing worked!"+data.Location)
+     this.setState({img: data.Location})
+
+     console.log(this.state.img)
+    })
+    
   }
+    
 
   handleFormSubmit = event => {
     event.preventDefault();
    console.log("hey")
-    if (this.state.names && this.state.address) {
+   
       API.saveResource({
         names: this.state.names,
         address: this.state.address,
@@ -74,12 +90,13 @@ class Resources extends Component {
         description: this.state.description,
         number: this.state.number,
         state: this.state.state,
-        zip: this.state.zip
+        zip: this.state.zip,
+        img: this.state.img
       })
         .then(res => this.loadResource())
         .catch(err => console.log(err));
     }
-  };
+  ;
 
   render() {
     return (
@@ -106,12 +123,14 @@ class Resources extends Component {
                 name="product"
                 placeholder="(required)"
               />
+
                <p>Load Image </p>
          <File onChange={this.fileChangedHandler}
          id="inputs"
+       
           />
           <Btn onClick={this.uploadHandler}>Upload!</Btn>
-
+          <img  src={this.state.img}/>
         
 
               <p>Description</p>
@@ -150,7 +169,7 @@ class Resources extends Component {
               <Input
                 value={this.state.offering}
                 onChange={this.handleInputChange}
-                name="state"
+                name="offering"
                 placeholder="(required)"
               />  
               
