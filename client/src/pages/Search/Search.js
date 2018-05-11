@@ -1,16 +1,10 @@
 import React, { Component } from "react";
 import DeleteBtn from "../../components/DeleteBtn";
-import Btn from "../../components/Button";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
-import AWS from "../../utils/AWSUtil.js";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
-import { Input, TextArea,File, Select, FormBtn } from "../../components/Form";
-
-
-
 
 class Search extends Component {
   state = {
@@ -26,7 +20,6 @@ class Search extends Component {
     state: "",
     zip: "",
     selectedFile: null
-
   };
 
   componentDidMount() {

@@ -1,18 +1,9 @@
 import React, { Component } from "react";
-import Dropzone from "react-dropzone";
-import axios from "axios";
-import DeleteBtn from "../../components/DeleteBtn";
 import Btn from "../../components/Button";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import AWS from "../../utils/AWSUtil.js";
-import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../../components/Grid";
-import { List, ListItem } from "../../components/List";
 import { Input, TextArea,File, Select, FormBtn } from "../../components/Form";
-
-
-
 
 class Resources extends Component {
   state = {
@@ -29,14 +20,11 @@ class Resources extends Component {
     zip: "",
     img:"",
     selectedFile: null
-
   };
 
   componentDidMount() {
     this.loadResources();
   }
- 
-
  
   loadResources = () => {
     API.getResource()
@@ -59,9 +47,11 @@ class Resources extends Component {
       [name]: value
     });
   };
+
   fileChangedHandler = (event) => {
     this.setState({selectedFile: event.target.files[0]})
   }
+
   uploadHandler = (event) => { 
     event.preventDefault();
     let  file = this.state.selectedFile;
@@ -73,9 +63,7 @@ class Resources extends Component {
 
      console.log(this.state.img)
     })
-    
   }
-    
 
   handleFormSubmit = event => {
     event.preventDefault();
@@ -100,15 +88,10 @@ class Resources extends Component {
 
   render() {
     return (
-      <Container fluid>
-        <Row>
-          <Col size="md-6">
+      <div>
             <Jumbotron>
               <h1>Offer Resources</h1>
             </Jumbotron>
-            <form>
-            
-          
               <p>Name/Organization </p>
               <Input
                 value={this.state.names}
@@ -190,11 +173,7 @@ class Resources extends Component {
               <FormBtn
                onClick={this.handleFormSubmit}
               >Submit </FormBtn>
-            </form>
-          </Col>
-         
-        </Row>
-      </Container>
+      </div>
     );
   }
 }
