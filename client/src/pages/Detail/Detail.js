@@ -1,50 +1,69 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../../components/Grid";
-import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
+import { Link } from "react-router-dom";
+import { List, ListItem } from "../../components/List";
+import { Container,Row,Col } from "../../components/Grid";
 
 class Detail extends Component {
   state = {
-    book: {}
+    Resources: []
+  
   };
-  // When this component mounts, grab the book with the _id of this.props.match.params.id
-  // e.g. localhost:3000/books/599dcb67f0f16317844583fc
+
   componentDidMount() {
-    API.getBook(this.props.match.params.id)
-      .then(res => this.setState({ book: res.data }))
+ 
+    API.getResourcebyId(this.props.match.params.id)
+      .then(res => this.setState({Resources: res.data }))
       .catch(err => console.log(err));
   }
 
+ 
+
+
   render() {
     return (
-      <Container fluid>
-        <Row>
-          <Col size="md-12">
-            <Jumbotron>
-              <h1>
-                {this.state.book.title} by {this.state.book.author}
-              </h1>
-            </Jumbotron>
-          </Col>
-        </Row>
-        <Row>
-          <Col size="md-10 md-offset-1">
-            <article>
-              <h1>Synopsis</h1>
-              <p>
-                {this.state.book.synopsis}
-              </p>
-            </article>
-          </Col>
-        </Row>
-        <Row>
-          <Col size="md-2">
-            <Link to="/">← Back to Authors</Link>
-          </Col>
-        </Row>
+      <Container>
+        <div className="col-md-4 col-md-offset-4 mt-5">
+         <div classame="card">
+  <div classame="card-header text-center">
+ Details
+  </div>
+  <div className="card-body">
+    <h5 classame="card-title">{this.state.Resources.offering}</h5>
+    <p classame="card-text">{this.state.Resources.description}</p>
+    {this.state.Resources.category}
+    <small>{this.state.Resources.address} </small>
+    <br/>
+    <small>{this.state.Resources.city}{this.state.Resources.state}{this.state.Resources.zip}</small>
+    <br/>
+    <small>{this.state.Resources.name}{this.state.Resources.number}</small>
+ 
+  </div>
+</div>
+</div>
+
+
       </Container>
     );
+  }
+}
+
+const styles = {
+  container: {
+    position: "absolute",
+    top: "calc(50% - 300px)",
+    left: "calc(50% - 200px)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    width: "400px",
+    height: "600px",
+    background: "#0D1E30"
+  },
+  head: {
+    fontSize: "50px",
+    color: "#fff"
   }
 }
 

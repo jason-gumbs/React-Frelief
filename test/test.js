@@ -18,7 +18,7 @@ describe("ReactFrelief", function() {
       })
       // Assess the title is as expected
       .then(function(title) {
-        expect(title).to.equal("React Reading List");
+        expect(title).to.equal("React Frelief");
         done();
       })
       .catch(function(err){

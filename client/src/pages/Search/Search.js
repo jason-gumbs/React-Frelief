@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
-import API from "../utils/API";
+import API from "../../utils/API";
 import { Link } from "react-router-dom";
-import { List, ListItem } from "../components/List";
+import { List, ListItem } from "../../components/List";
 
 class Search extends Component {
   state = {
@@ -81,9 +81,7 @@ class Search extends Component {
               {this.state.Resources.map(resource => (
                 <ListItem key={resource._id}>
                   <Link to={"/resource/" + resource._id}>
-                    <strong>
-                      {resource.offering}
-                    </strong>
+                    <strong>{resource.offering}</strong>
                     </Link>
                     <br/>
                     <p>{resource.description}</p>

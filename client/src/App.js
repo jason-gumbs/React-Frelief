@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Resources from "./pages/Resources/Resource.js";
 import Maps from "./pages/Map";
-import Search from "./pages/Search.js";
+import Search from "./pages/Search/Search.js";
 import Homes from "./pages/Home";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
