@@ -3,6 +3,7 @@ import Btn from "../../components/Button";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import AWS from "../../utils/AWSUtil.js";
+import { Container,Row,Col } from "../../components/Grid";
 import { Input, TextArea,File, Select, FormBtn } from "../../components/Form";
 
 class Resources extends Component {
@@ -88,74 +89,108 @@ class Resources extends Component {
 
   render() {
     return (
-      <div style={styles.container}>
-        <p style={styles.head}>Offer Resources</p>
+      <Container >
+        <form >
+        <div class="form-row">
+          <Col>
+        <h1 style={{color: "white"}} className="text-center">Offer Resources</h1>
+        <br/>
+        <div class="form-group">
         <Input
           value={this.state.names}
           onChange={this.handleInputChange}
           name="names"
           placeholder="Name/Organization"
         />
+        </div>
+        <div class="form-group">
         <Input
           value={this.state.product}
           onChange={this.handleInputChange}
           name="product"
           placeholder="Product/Service"
         />
+        </div>
+        <div class="form-group ">
         <File 
           onChange={this.fileChangedHandler}
           id="inputs"
         />
+      
+        <br/>
+       
         <Btn onClick={this.uploadHandler}>Upload Image</Btn>
-        <img  src={this.state.img}/>
+        </div>
+        
+        {this.state.img ?(
+        <img style={ { height: 100, width: 100}} src={this.state.img}/>):("")}
+
+        <div class="form-group">
         <TextArea
           value={this.state.description}
           onChange={this.handleInputChange}
           name="description"
           placeholder="Description"
         />
+        </div>
+        <div class="form-group">
         <Select value={this.state.category} onChange={this.handleInputChange}
         name="category" />
+        </div>
+        <div class="form-group">
+      
         <Input
           value={this.state.address}
           onChange={this.handleInputChange}
           name="address"
           placeholder="Address"
         />   
+        </div>
+        <div class="form-group col-md-4">
         <Input
           value={this.state.city}
           onChange={this.handleInputChange}
           name="city"
           placeholder="City"
         />    
+        </div>
+        <div class="form-group col-md-3">
         <Input
           value={this.state.state}
           onChange={this.handleInputChange}
           name="state"
-          placeholder="State"
-        />   
-        <Input
-          value={this.state.offering}
-          onChange={this.handleInputChange}
-          name="offering"
-          placeholder="Offering"
-        />  
+          placeholder="St"
+        /> 
+        </div> 
+        <div class="form-group col-md-3">
         <Input
           value={this.state.zip}
           onChange={this.handleInputChange}
           name="zip"
           placeholder="Zip"
         />  
+        </div>
+       
+        <Input
+          value={this.state.offering}
+          onChange={this.handleInputChange}
+          name="offering"
+          placeholder="What are you Offering?"
+        />  
+       
         <Input
           value={this.state.number}
           onChange={this.handleInputChange}
           name="number"
-          placeholder="Number"
+          placeholder="Phone Number"
         />
         <FormBtn
           onClick={this.handleFormSubmit}
         >Submit </FormBtn>
-      </div>
+        </Col>
+       </div>
+        </form>
+      </Container>
     );
   }
 }
@@ -182,8 +217,8 @@ const styles = {
     padding: "5px",
     width: "150px",
     margin: "5px",
-    backgroundColor: "#00A3FF",
-    border: "none"
+    backgroundColor: "#00A3FF"
+
   },
   inputHalf: {
     width: "40%"

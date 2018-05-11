@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import DeleteBtn from "../components/DeleteBtn";
+
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { List, ListItem } from "../components/List";
@@ -82,10 +82,13 @@ class Search extends Component {
                 <ListItem key={resource._id}>
                   <Link to={"/resource/" + resource._id}>
                     <strong>
-                      {resource.name} by {resource.address}
+                      {resource.offering}
                     </strong>
-                  </Link>
-                  <DeleteBtn onClick={() => this.deleteResource(resource._id)} />
+                    </Link>
+                    <br/>
+                    <p>{resource.description}</p>
+                    <small className="text-success">{resource.category}</small>
+                
                 </ListItem>
               ))}
             </List>
