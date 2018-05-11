@@ -1,18 +1,9 @@
 import React, { Component } from "react";
-import Dropzone from "react-dropzone";
-import axios from "axios";
-import DeleteBtn from "../../components/DeleteBtn";
 import Btn from "../../components/Button";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import AWS from "../../utils/AWSUtil.js";
-import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../../components/Grid";
-import { List, ListItem } from "../../components/List";
 import { Input, TextArea,File, Select, FormBtn } from "../../components/Form";
-
-
-
 
 class Resources extends Component {
   state = {
@@ -29,14 +20,11 @@ class Resources extends Component {
     zip: "",
     img:"",
     selectedFile: null
-
   };
 
   componentDidMount() {
     this.loadResources();
   }
- 
-
  
   loadResources = () => {
     API.getResource()
@@ -59,9 +47,11 @@ class Resources extends Component {
       [name]: value
     });
   };
+
   fileChangedHandler = (event) => {
     this.setState({selectedFile: event.target.files[0]})
   }
+
   uploadHandler = (event) => { 
     event.preventDefault();
     let  file = this.state.selectedFile;
@@ -73,9 +63,7 @@ class Resources extends Component {
 
      console.log(this.state.img)
     })
-    
   }
-    
 
   handleFormSubmit = event => {
     event.preventDefault();
@@ -100,102 +88,105 @@ class Resources extends Component {
 
   render() {
     return (
-      <Container fluid>
-        <Row>
-          <Col size="md-6">
-            <Jumbotron>
-              <h1>Offer Resources</h1>
-            </Jumbotron>
-            <form>
-            
-          
-              <p>Name/Organization </p>
-              <Input
-                value={this.state.names}
-                onChange={this.handleInputChange}
-                name="names"
-                placeholder="(required)"
-              />
-              <p>Product/Service</p>
-              <Input
-                value={this.state.product}
-                onChange={this.handleInputChange}
-                name="product"
-                placeholder="(required)"
-              />
-
-               <p>Load Image </p>
-         <File onChange={this.fileChangedHandler}
-         id="inputs"
-       
-          />
-          <Btn onClick={this.uploadHandler}>Upload!</Btn>
-          <img  src={this.state.img}/>
-        
-
-              <p>Description</p>
-              <TextArea
-                value={this.state.description}
-                onChange={this.handleInputChange}
-                name="description"
-                placeholder="(reqiured)"
-              />
-              <Select value={this.state.category} onChange={this.handleInputChange}
-              name="category" />
-
-              <p>Address</p>
-              <Input
-                value={this.state.address}
-                onChange={this.handleInputChange}
-                name="address"
-                placeholder="(required)"
-              />   
-               <p>City</p>
-              <Input
-                value={this.state.city}
-                onChange={this.handleInputChange}
-                name="city"
-                placeholder="(required)"
-              />    
-              
-              <p>State</p>
-              <Input
-                value={this.state.state}
-                onChange={this.handleInputChange}
-                name="state"
-                placeholder="(required)"
-              />   
-                <p>Offering</p>
-              <Input
-                value={this.state.offering}
-                onChange={this.handleInputChange}
-                name="offering"
-                placeholder="(required)"
-              />  
-              
-              <p>Zip</p>
-              <Input
-                value={this.state.zip}
-                onChange={this.handleInputChange}
-                name="zip"
-                placeholder="(required)"
-              />  
-              <p>Phone Number</p>
-              <Input
-                value={this.state.number}
-                onChange={this.handleInputChange}
-                name="number"
-                placeholder="(required)"
-              />
-              <FormBtn
-               onClick={this.handleFormSubmit}
-              >Submit </FormBtn>
-            </form>
-          </Col>
-         
-        </Row>
-      </Container>
+      <div style={styles.container}>
+        <p style={styles.head}>Offer Resources</p>
+        <Input
+          value={this.state.names}
+          onChange={this.handleInputChange}
+          name="names"
+          placeholder="Name/Organization"
+        />
+        <Input
+          value={this.state.product}
+          onChange={this.handleInputChange}
+          name="product"
+          placeholder="Product/Service"
+        />
+        <File 
+          onChange={this.fileChangedHandler}
+          id="inputs"
+        />
+        <Btn onClick={this.uploadHandler}>Upload Image</Btn>
+        <img  src={this.state.img}/>
+        <TextArea
+          value={this.state.description}
+          onChange={this.handleInputChange}
+          name="description"
+          placeholder="Description"
+        />
+        <Select value={this.state.category} onChange={this.handleInputChange}
+        name="category" />
+        <Input
+          value={this.state.address}
+          onChange={this.handleInputChange}
+          name="address"
+          placeholder="Address"
+        />   
+        <Input
+          value={this.state.city}
+          onChange={this.handleInputChange}
+          name="city"
+          placeholder="City"
+        />    
+        <Input
+          value={this.state.state}
+          onChange={this.handleInputChange}
+          name="state"
+          placeholder="State"
+        />   
+        <Input
+          value={this.state.offering}
+          onChange={this.handleInputChange}
+          name="offering"
+          placeholder="Offering"
+        />  
+        <Input
+          value={this.state.zip}
+          onChange={this.handleInputChange}
+          name="zip"
+          placeholder="Zip"
+        />  
+        <Input
+          value={this.state.number}
+          onChange={this.handleInputChange}
+          name="number"
+          placeholder="Number"
+        />
+        <FormBtn
+          onClick={this.handleFormSubmit}
+        >Submit </FormBtn>
+      </div>
     );
+  }
+}
+
+const styles = {
+  container: {
+    position: "absolute",
+    top: "calc(50% - 300px)",
+    left: "calc(50% - 200px)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    width: "600px",
+    height: "800px",
+    background: "#0D1E30",
+    flexWrap: "flex"
+  },
+  head: {
+    fontSize: "50px",
+    color: "#fff"
+  },
+  button: {
+    padding: "5px",
+    width: "150px",
+    margin: "5px",
+    backgroundColor: "#00A3FF",
+    border: "none"
+  },
+  inputHalf: {
+    width: "40%"
   }
 }
 

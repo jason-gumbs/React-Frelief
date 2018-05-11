@@ -7,5 +7,3 @@ const Btn = props => (
 );
 
 export default Btn;
-
-
