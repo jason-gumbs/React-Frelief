@@ -31,10 +31,11 @@ class Detail extends Component {
   <div className="card-body">
     <h5 classame="card-title">{this.state.Resources.offering}</h5>
     <p classame="card-text">{this.state.Resources.description}</p>
-    {this.state.Resources.category}
+    <strong>{this.state.Resources.category}</strong>
+    <br/>
     <small>{this.state.Resources.address} </small>
     <br/>
-    <small>{this.state.Resources.city}{this.state.Resources.state}{this.state.Resources.zip}</small>
+    <small>{this.state.Resources.city} {this.state.Resources.state}, {this.state.Resources.zip}</small>
     <br/>
     <small>{this.state.Resources.name}{this.state.Resources.number}</small>
  
