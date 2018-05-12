@@ -1,6 +1,6 @@
-## Project 3 - Frelief Reloaded
+# Frelief
 
-## Developers/ Support: Steffan Sornpoa, Wilfred Gumbs, Cassandra Henderson, Karess Motley, Jim Kirkland, Tony Chung
+Developers/ Support: Steffen Sornpoa, Wilfred Gumbs, Cassandra Henderson, Karess Motley, Jim Kirkland, Tony Chung
 
 ## Project Overview
 
